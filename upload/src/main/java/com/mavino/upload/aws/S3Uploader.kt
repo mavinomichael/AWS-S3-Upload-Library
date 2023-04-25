@@ -40,9 +40,9 @@ class S3Uploader constructor(
         val metadata = ObjectMetadata()
         metadata.contentType = mimeType
 
+        val extension = mimeType.split("/").lastOrNull() ?: ""
         val fileName =
-            if (useFileName) file.name else UUID.randomUUID().toString() + ".mp4"
-        //+ mimeType.split("/")
+            if (useFileName) file.name else UUID.randomUUID().toString() + ".$extension"
 
         try {
             Log.d(TAG, "S3uploader uploadFile: filePath passed to fun $filePath")
