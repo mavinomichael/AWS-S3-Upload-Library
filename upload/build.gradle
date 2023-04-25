@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
@@ -41,4 +42,18 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-s3:2.52.1'
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.18.0'
     implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.52.1'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.mavinomichael'
+                artifactId = 'aws-s3-uploader'
+                version = '1.0'
+            }
+        }
+    }
 }
