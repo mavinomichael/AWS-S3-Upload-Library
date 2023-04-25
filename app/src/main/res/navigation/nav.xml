@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/uploadFragment">
+
+    <fragment
+        android:id="@+id/uploadFragment"
+        android:name="com.mavino.aws_s3_upload.ui.UploadFragment"
+        android:label="splash_welcome"
+        tools:layout="@layout/fragment_upload">
+
+<!--        <action-->
+<!--            android:id="@+id/action_welcome_fragment"-->
+<!--            app:destination="@id/onboarding_nav" />-->
+    </fragment>
+
+</navigation>

@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.mavino.aws_s3_upload"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    implementation project(path: ':upload')
+
+    implementation 'com.google.android.material:material:1.7.0'
+
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
+
+    implementation 'com.google.dagger:hilt-android:2.45'
+    kapt 'com.google.dagger:hilt-compiler:2.45'
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    // For instrumentation tests
+    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.45'
+    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.45'
+
+    // For local unit tests
+    testImplementation 'com.google.dagger:hilt-android-testing:2.45'
+    kaptTest 'com.google.dagger:hilt-compiler:2.45'
+
+    def fragment_ktx = "1.3.6"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+
+    def retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
+    def room = "2.3.0"
+    implementation "androidx.room:room-runtime:$room"
+    implementation "androidx.room:room-ktx:$room"
+    kapt "androidx.room:room-compiler:$room"
+
+    //AWS SDK
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.52.1'
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.18.0'
+    implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.52.1'
+}
+
+kapt {
+    correctErrorTypes true
+}
